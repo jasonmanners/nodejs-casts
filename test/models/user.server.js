@@ -1,7 +1,7 @@
 var chai      = require("chai"),
     mongoose  = require("mongoose"),
     config    = require("../../config/config").test,
-    User      = require("../../app/models/user")
+    User      = require("../../lib/models/user")
 
 chai.should();
 
@@ -45,7 +45,6 @@ describe('User', function(){
       err.errors.should.have.property('name');
       err.errors.should.have.property('email');
       err.errors.should.have.property('hashed_password');
-      // user.name.should.equal('jason');
       done();
     })
   });

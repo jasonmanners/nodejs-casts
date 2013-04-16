@@ -30,6 +30,26 @@ This is an application written in Node.js that allows admins to post, share, and
 	- twitter: Hash
 	- github: Hash
 
+
+# New Structure
+- lib
+	- casts
+		- routes
+		- controllers
+			- casts
+
+	- admin
+		- routes
+		- controllers
+			- casts
+			- users
+
+	- models
+		- cast
+		- user
+
+
+
 # Tasks
 ## Erich
 - [] Prettify front page

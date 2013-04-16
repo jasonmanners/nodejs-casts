@@ -1,0 +1,53 @@
+extends ../../../views/layout
+
+block main
+  .row
+    .span6
+      .pull-left
+    .span6
+block content
+  .row
+    .span10
+      .cast-name=cast.name
+      p.cast-description=cast.description
+    .span2
+      .pull-right
+        =cast.createdAt.toDateString()
+  .row
+    .span12(style="background: #EEE; padding-top:30px; padding-bottom:30px; border-radius:10px;")
+      div(style="margin:auto; width:848px;")
+        video#video1.sublime(poster=cast.video.poster, width='848', height='477', data-autoresize='none', data-embed-size='940', data-uid=cast.video.uid, data-name='Midnight Sun', preload='none')
+          each s in cast.video.source
+            source(src=s.src, data-quality=s.quality)
+  .row
+    .span12
+      .tabbable(style='margin-bottom: 18px; margin-top:10px')
+        ul.nav.nav-tabs
+          li.active
+            a(href='#tab1', data-toggle='tab') Summary
+          li
+            a(href='#tab2', data-toggle='tab') ASCII cast
+          li
+            a(href='#tab3', data-toggle='tab') Comments
+        .tab-content(style='padding-bottom: 9px; border-bottom: 1px solid #ddd;')
+          #tab1.tab-pane.active
+            !{summary}
+          #tab2.tab-pane
+            !{ascii_cast}
+          #tab3.tab-pane
+            | <div id="disqus_thread"></div>
+            |   <script type="text/javascript">
+            |        var disqus_developer = 1;
+            |       /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            |       var disqus_shortname = 'nodejscasts'; // required: replace example with your forum shortname
+            | 
+            |       /* * * DON'T EDIT BELOW THIS LINE * * */
+            |       (function() {
+            |           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            |           dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            |           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            |       })();
+            |   </script>
+            |   <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            |   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+

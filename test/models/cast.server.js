@@ -1,8 +1,8 @@
 var chai      = require("chai"),
     mongoose  = require("mongoose"),
     config    = require("../../config/config").test,
-    Cast      = require("../../app/models/cast"),
-    User     = require("../../app/models/user");;
+    Cast      = require("../../lib/models/cast"),
+    User     = require("../../lib/models/user");;
 
 chai.should();
 
@@ -30,7 +30,7 @@ describe('Cast', function(){
         poster: '123', 
         uuid:'123', 
         source: [
-        {src:'123'}
+          {src:'123'}
         ]
       }}, function(err,cast){
         castId = cast.id;
@@ -112,5 +112,13 @@ describe('Cast', function(){
         })
       });
     })
+  });
+
+  it("finds all casts", function(done) {
+    Cast.all(function(err,casts){
+      casts.should.have.length(1);
+      casts[0].name.should.equal("TestCast1");
+      done();
+    });
   });
 });
